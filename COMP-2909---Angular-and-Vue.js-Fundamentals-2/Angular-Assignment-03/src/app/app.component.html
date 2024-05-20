@@ -1,0 +1,40 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <h1>Movie Page Assignment</h1>
+</div>
+
+<div class="content" role="main">
+  <h1>Genres</h1>
+  <form #genreAddform="ngForm">
+    <label for="genreAdd">Filter by Genre: </label>
+    <select id="genreAdd" name="genre" [(ngModel)]="genreID" #idGenre="ngModel">
+      <option *ngFor="let genre of _genreArray" value="{{ genre.id }}">
+        {{ genre.id }}: {{ genre.name }}
+      </option>
+    </select>
+    <button (click)="updateSearch()">Submit</button>
+  </form>
+
+  <h1>Movies</h1>
+  <ul class="fContainer">
+    <li *ngFor="let movie of _movieArray" class="movie-result">
+      <div>
+        <img src="http://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" />
+        <br />
+        <span class="title">Title:</span> {{ movie.title }} <br />
+        <span class="title">Release Date</span> {{ movie.release_date }} <br />
+        <span class="title">Synopsis:</span>
+        {{
+          movie.overview.length > 97
+            ? (movie.overview | slice: 0:100) + "..."
+            : movie.overview
+        }}
+
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div id="footer"></div>
+
+<router-outlet></router-outlet>

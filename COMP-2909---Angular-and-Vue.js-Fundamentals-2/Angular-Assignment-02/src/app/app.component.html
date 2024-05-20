@@ -1,0 +1,136 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner"></div>
+
+<div class="content" role="main"></div>
+
+<form #nameAddForm="ngForm">
+  <label for="fName">First Name: </label>
+  <input
+    class="inputField"
+    type="text"
+    name="fName"
+    pattern="[A-Z\'a-z]+"
+    [(ngModel)]="firstName"
+    #addFirstName="ngModel"
+    required
+  />
+  <span *ngIf="addFirstName?.errors?.pattern" style="color: red">
+    Invalid Input!</span
+  >
+  <br />
+
+  <label for="lName">Last Name: </label>
+  <input
+    type="text"
+    name="lName"
+    pattern="[A-Z\'a-z]+"
+    [(ngModel)]="lastName"
+    #addLastName="ngModel"
+    required
+  />
+  <span *ngIf="addLastName?.errors?.pattern" style="color: red">
+    Invalid Input!</span
+  >
+  <br />
+
+  <label for="address">Address: </label>
+  <input
+    type="text"
+    name="address"
+    pattern="[A-Za-z0-9 ]+"
+    [(ngModel)]="streetAddress"
+    #sAddress="ngModel"
+    required
+  />
+  <br />
+  <button
+    [disabled]="!nameAddForm.form.valid"
+    name="submitAddress"
+    (click)="orderDetails()"
+  >
+    Submit Address
+  </button>
+</form>
+
+<br />
+<br />
+
+<form #itemAddForm="ngForm">
+  <button [disabled]="!itemAddForm.form.valid" (click)="addItem()">
+    Add Item:
+  </button>
+
+  <label for="groceryItems">Items:</label>
+  <select
+    id="groceryItems"
+    name="fruit"
+    [(ngModel)]="groceryItem"
+    #gItem="ngModel"
+    required
+  >
+    <option value="Apples">Apples</option>
+    <option value="Peaches">Peaches</option>
+    <option value="Pears">Pears</option>
+    <option value="Plums">Plums</option>
+  </select>
+  <label for="qty">Quantity: </label>
+  <input
+    type="text"
+    name="qty"
+    pattern="^\d*$"
+    [(ngModel)]="groceryQty"
+    #gItem="ngModel"
+    required
+  />
+</form>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Qty</th>
+    <th>Unit Price</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td colspan="5" style="background-color: grey"></td>
+  </tr>
+
+  <tr *ngFor="let listItem of shoppingList" id="{{ listItem.id }}">
+    <td>{{ listItem.name }}</td>
+    <td>{{ listItem.qty }}</td>
+    <td>{{ listItem.price }}</td>
+    <td>{{ listItem.totPrice }}</td>
+    <td>
+      <button
+        id="{{ listItem.id }}"
+        name="{{ listItem.id }}"
+        value="{{ listItem.id }}"
+        name="delete"
+        (click)="removeItem()"
+      >
+        Delete
+      </button>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="5" style="background-color: grey"></td>
+  </tr>
+  <tr>
+    <td>Subtotal</td>
+    <td colspan="3">{{ subTotal }}</td>
+  </tr>
+  <tr>
+    <td>Taxes (7%)</td>
+    <td colspan="3">{{ tax }}</td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td colspan="3">{{ totalPrice }}</td>
+  </tr>
+</table>
+
+<p>{{ orderInfoString }}</p> 
+
+<router-outlet></router-outlet>

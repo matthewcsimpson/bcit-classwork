@@ -1,0 +1,128 @@
+<h2>CALCULATOR</h2>
+<div class="equation">
+
+  <!-- SUMS-->
+  <form #addForm="ngForm">
+    <p>Sum</p>
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="sumNumOne"
+      [(ngModel)]="sumFirstNumber"
+      required
+      #sumFirstNum="ngModel"
+    />
+    +
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="sumNumTwo"
+      [(ngModel)]="sumSecondNumber"
+      required
+      #sumSecondNum="ngModel"
+    />
+    <button [disabled]="!addForm.form.valid" (click)="doAdd()">=</button>
+
+    <p *ngIf="sumFirstNum?.errors?.pattern || sumSecondNum?.errors?.pattern">
+      Only numerical characters are allowed.
+    </p>
+    {{summation}}
+  </form>
+
+<!-- DIFFERENCES-->
+  <form #subForm="ngForm">
+    <p>Difference</p>
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="diffNumOne"
+      [(ngModel)]="diffFirstNumber"
+      required
+      #diffNum1="ngModel"
+    />
+    -
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="diffNumTwo"
+      [(ngModel)]="diffSecondNumber"
+      required
+      #diffNum2="ngModel"
+    />
+    <button [disabled]="!subForm.form.valid" (click)="doSubtract()">=</button>
+
+    <p *ngIf="diffNum1?.errors?.pattern || diffNum2?.errors?.pattern">
+      Only numerical characters are allowed.
+    </p>
+    {{difference}}
+  </form>
+
+
+  <!-- PRODUCTS-->
+  <form #prodForm="ngForm">
+    <p>Product</p>
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="prodNumOne"
+      [(ngModel)]="prodFirstNumber"
+      required
+      #prodNum1="ngModel"
+    />
+    -
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="prodNumTwo"
+      [(ngModel)]="prodSecondNumber"
+      required
+      #prodNum2="ngModel"
+    />
+    <button [disabled]="!prodForm.form.valid" (click)="doProduct()">=</button>
+
+    <p *ngIf="prodNum1?.errors?.pattern || prodNum2?.errors?.pattern">
+      Only numerical characters are allowed.
+    </p>
+    {{product}}
+  </form>
+
+
+  <!-- QUOTIENTS-->
+  <form #quotForm="ngForm">
+    <p>Quotient</p>
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="quotNumOne"
+      [(ngModel)]="quotFirstNumber"
+      required
+      #quotNum1="ngModel"
+    />
+    ÷
+    <input
+      class="inputField"
+      type="text"
+      pattern="^\d*\.?\d*$"
+      name="quotNumTwo"
+      [(ngModel)]="quotSecondNumber"
+      required
+      #quotNum2="ngModel"
+    />
+    <button [disabled]="!quotForm.form.valid" (click)="doQuotient()">=</button>
+
+    <p *ngIf="quotNum1?.errors?.pattern || quotNum2?.errors?.pattern">
+      Only numerical characters are allowed.
+    </p>
+    {{quotient}}
+  </form>
+  
+</div>
+
+

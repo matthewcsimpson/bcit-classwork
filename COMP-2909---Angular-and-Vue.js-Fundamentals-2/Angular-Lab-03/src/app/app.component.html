@@ -1,0 +1,33 @@
+<!-- <h1>
+  Welcome to {{title}}!
+</h1>
+<input type="submit" value="my button" (mouseenter)="myMouseEnter()" (mouseleave)="myMouseLeave()"> -->
+
+<!-- <h1>Welcome to {{ title }}!</h1>
+<input type="text" (keydown)="myKeyDown($event)" (keyup)="myKeyUp($event)" />
+<p>Last key pressed: {{ keyupChar }}</p>
+<p>{{ keyupString }}</p>
+ -->
+<!-- 
+ <h1>
+  Welcome to {{title}}!
+</h1>
+<input type='text' (focus)="myFocusEvent('gainedFocus')" (blur)="myFocusEvent('lostFocus')">
+ -->
+
+<!-- <div
+  (mousedown)="myMouseHandler($event, 'mouse down')"
+  (mouseup)="myMouseHandler($event, 'mouse up')"
+  (mousemove)="myMouseHandler($event, 'mouse move')"
+>
+  This area has<br />
+  mouse-down<br />
+  and<br />
+  mouse-up<br />
+  enabled.
+</div> -->
+
+<p [myHighlight]="'red'">Highlight me!</p>
+<p [myHighlight]="'violet'">Highlight me too!</p>
+<p [myHighlight]="'green'">Highlight me three!</p>
+
